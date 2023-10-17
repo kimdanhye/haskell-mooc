@@ -56,7 +56,9 @@ quadruple x = double (double x)
 --   distance 0 0 1 1  ==>  1.4142135...
 --   distance 1 1 4 5  ==>  5.0
 
-distance = todo
+distance = distance :: Double -> Double -> Double -> Double -> Double
+distance x1 y1 x2 y2 = square root of ((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
 ------------------------------------------------------------------------------
 -- Ex 5: define the function eeny that returns "eeny" for even inputs
 -- and "meeny" for odd inputs.
