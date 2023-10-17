@@ -81,7 +81,7 @@ checkPassword :: String -> String
 checkPassword password
     | password == "swordfish" = "You're in."
     | password == "mellon"    = "You're in."
-    | otherwise               = "ACCESS DENIED!"
+    | otherwise = "ACCESS DENIED!"
 
 ------------------------------------------------------------------------------
 -- Ex 7: A postal service prices packages the following way.
@@ -93,7 +93,11 @@ checkPassword password
 -- in grams, and returns the cost in credits.
 
 postagePrice :: Int -> Int
-postagePrice = todo
+postagePrice weight
+    | weight <= 500 = 250
+    | weight <= 5000 = 300 + weight - 500
+    | otherwise = 6000
+
 
 ------------------------------------------------------------------------------
 -- Ex 8: define a function isZero that returns True if it is given an
