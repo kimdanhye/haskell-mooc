@@ -21,7 +21,10 @@ import Mooc.Todo
 -- Ex 1: define variables one and two. They should have type Int and
 -- values 1 and 2, respectively.
 
-
+one :: Int
+one = 1
+two :: Int
+two = 2
 ------------------------------------------------------------------------------
 -- Ex 2: define the function double of type Integer->Integer. Double
 -- should take one argument and return it multiplied by two.
@@ -52,7 +55,6 @@ quadruple x = todo
 --   distance 1 1 4 5  ==>  5.0
 
 distance = todo
-
 ------------------------------------------------------------------------------
 -- Ex 5: define the function eeny that returns "eeny" for even inputs
 -- and "meeny" for odd inputs.
