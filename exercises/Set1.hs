@@ -77,10 +77,8 @@ eeny x
 -- Modify it so that it accepts two passwords, "swordfish" and
 -- "mellon".
 
-checkPassword :: String -> String
-checkPassword password = if password == "swordfish"
-                         then "You're in."
-                         else "ACCESS DENIED!"
+checkPassword :: String -> Bool
+checkPassword password = password == "swordfish" || password == "mellon"
 
 ------------------------------------------------------------------------------
 -- Ex 7: A postal service prices packages the following way.
