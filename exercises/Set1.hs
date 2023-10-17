@@ -95,7 +95,7 @@ checkPassword password
 postagePrice :: Int -> Int
 postagePrice weight
     | weight <= 500 = 250
-    | 500 < weight <= 5000 = 300 + weight - 500
+    | weight <= 5000 = 300 + (weight - 500)
     | otherwise = 6000
 
 
