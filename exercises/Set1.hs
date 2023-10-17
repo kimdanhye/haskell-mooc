@@ -95,7 +95,7 @@ checkPassword password
 postagePrice :: Int -> Int
 postagePrice weight
     | weight <= 500 = 250
-    | weight <= 5000 = 300 + weight - 500
+    | 500 < weight <= 5000 = 300 + weight - 500
     | otherwise = 6000
 
 
@@ -107,7 +107,9 @@ postagePrice weight
 --
 -- Ps. remember, the type of booleans in haskell is Bool
 
-isZero = todo
+isZero :: Integer -> Bool
+isZero 0 = True
+isZero _ = False
 
 ------------------------------------------------------------------------------
 -- Ex 9: implement using recursion a function sumTo such that
