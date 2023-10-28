@@ -67,17 +67,14 @@ distance x1 y1 x2 y2 = sqrt ((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
 eeny :: Integer -> String
-eeny x
-  | even x    = "eeny"
-  | otherwise = "meeny"
-
+eeny n = if even n then "eeny" else "meeny"
 
 ------------------------------------------------------------------------------
 -- Ex 6: here's the function checkPassword from the course material.
 -- Modify it so that it accepts two passwords, "swordfish" and
 -- "mellon".
 
-checkPassword :: String -> String
+checkPassword :: String -> String      --pattern matching 이용!
 checkPassword password
     | password == "swordfish" = "You're in."
     | password == "mellon"    = "You're in."
@@ -95,7 +92,7 @@ checkPassword password
 postagePrice :: Int -> Int
 postagePrice weight
     | weight <= 500 = 250
-    | weight <= 5000 = 300 + (weight - 500)
+    | weight <= 5000 = 300 + weight
     | otherwise = 6000
 
 
