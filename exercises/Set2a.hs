@@ -47,8 +47,8 @@ takeFinal n xs = if length xs <= n
 --   updateAt 0 4 [1,2,3]   ==>  [4,2,3]
 --   updateAt 2 0 [4,5,6,7] ==>  [4,5,0,7]
 
-updateAt :: Int -> a -> [a] -> [a]
-updateAt i x xs = todo
+updateAt :: Int -> a -> [a] -> [a]  -- 대체하고자하는 요소의 인덱스(Int) -> 대체할 새로운 요소(어떤 타입의 요소든 대체)->  
+updateAt i x xs = take i xs ++ [x] ++ drop (i + 1) xs
 
 ------------------------------------------------------------------------------
 -- Ex 4: substring i j s should return the substring of s starting at
