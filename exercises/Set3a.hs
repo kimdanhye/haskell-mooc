@@ -81,9 +81,11 @@ mapMaybe2 f (Just x) (Just y) = Just (f x y)
 palindromeHalfs :: [String] -> [String]
 palindromeHalfs xs = map firstHalf (filter palindrome xs)
 
-firstHalf = todo
+firstHalf :: String -> String
+firstHalf str = take ((length str + 1) `div` 2) str    -- str의 앞절반만 반환하는 함수
 
-palindrome = todo
+palindrome :: String -> Bool          -- palindrome 여부 반환
+palindrome str = str == reverse str   -- reverse한 str이 원래 str과 같은지 Bool값으로 반환
 
 ------------------------------------------------------------------------------
 -- Ex 5: Implement a function capitalize that takes in a string and
