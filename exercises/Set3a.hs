@@ -24,11 +24,13 @@ import Data.List
 -- Examples:
 --
 --  maxBy (*2)   3       5      ==>  5
---  maxBy length [1,2,3] [4,5]  ==>  [1,2,3]
---  maxBy head   [1,2,3] [4,5]  ==>  [4,5]
+--  maxBy length [1,2,3] [4,5]  ==>  [1,2,3]   //length함수를 [1,2,3] [4,5]에 각각 적용한 결과를 비교하고 더 큰 결과를 반드는 리스트를 반환
+--  maxBy head   [1,2,3] [4,5]  ==>  [4,5]     //head함수를 각각 적용후 더 큰 결과를 만드는 리스트 반환
 
 maxBy :: (a -> Int) -> a -> a -> a
-maxBy measure a b = todo
+maxBy measure a b 
+    | measure a > measure b = a
+    | otherwise             = b
 
 ------------------------------------------------------------------------------
 -- Ex 2: implement the function mapMaybe that takes a function and a
@@ -148,17 +150,25 @@ while check update value = todo
 -- a Right, the function should call `check` on the contents of the
 -- Right and so on.
 --
--- Examples (see definition of step below):
+-- Examples (see definitions of step and bomb below):
 --   whileRight (step 100) 1   ==> 128
 --   whileRight (step 1000) 3  ==> 1536
+--   whileRight bomb 7         ==> "BOOM"
+--
+-- Hint! Remember the case-of expression from lecture 2.
 
 whileRight :: (a -> Either b a) -> a -> b
-whileRight f x = todo
+whileRight check x = todo
 
 -- for the whileRight examples:
 -- step k x doubles x if it's less than k
 step :: Int -> Int -> Either Int Int
 step k x = if x<k then Right (2*x) else Left x
+
+-- bomb x implements a countdown: it returns x-1 or "BOOM" if x was 0
+bomb :: Int -> Either String Int
+bomb 0 = Left "BOOM"
+bomb x = Right (x-1)
 
 ------------------------------------------------------------------------------
 -- Ex 9: given a list of strings and a length, return all strings that
@@ -236,6 +246,8 @@ multiCompose fs = todo
 --   multiApp sum [(1+), (^3), (+2)] 1  ==>  6
 --   multiApp reverse [tail, take 2, reverse] "foo" ==> ["oof","fo","oo"]
 --   multiApp concat [take 3, reverse] "race" ==> "racecar"
+--   multiApp id [head, (!!2), last] "axbxc" ==> ['a','b','c'] i.e. "abc"
+--   multiApp sum [head, (!!2), last] [1,9,2,9,3] ==> 6
 
 multiApp = todo
 
@@ -269,7 +281,7 @@ multiApp = todo
 --
 -- The suprise will only work if you generate the return list directly
 -- using (:). If you build the list in an argument to a helper
--- function, the surprise won't work.
+-- function, the surprise won't work. See section 3.8 in the material.
 
 interpreter :: [String] -> [String]
 interpreter commands = todo
