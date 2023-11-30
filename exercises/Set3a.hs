@@ -208,6 +208,8 @@ joinToLength l s = [x | a <- s, b <- s, let x = a ++ b, length x == l]
 --   [] +|+ [True]        ==> [True]
 --   [] +|+ []            ==> []
 
+(+|+) :: [a] -> [a] -> [a]
+x +|+ y = map head $ filter (not . null) [x,y]
 
 ------------------------------------------------------------------------------
 -- Ex 11: remember the lectureParticipants example from Lecture 2? We
