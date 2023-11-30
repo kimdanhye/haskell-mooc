@@ -226,7 +226,12 @@ x +|+ y = map head $ filter (not . null) [x,y]
 --   sumRights [Left "bad!", Left "missing"]         ==>  0
 
 sumRights :: [Either a Int] -> Int
-sumRights = todo
+sumRights [] = 0
+sumRights (x:xs) = get x + sumRights xs
+
+get :: Either a Int -> Int
+get (Left x)    = 0
+get (Right x)   = x
 
 ------------------------------------------------------------------------------
 -- Ex 12: recall the binary function composition operation
