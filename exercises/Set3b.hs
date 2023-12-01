@@ -75,7 +75,9 @@ p n = n + p (n - 1)                  -- p n은 n과 p (n-1)의 합을 반환
 --   mylast 0 [1,2,3] ==> 3
 
 mylast :: a -> [a] -> a
-mylast def xs = todo
+mylast def []     = def
+mylast  _  (x:[]) = x
+mylast def (_:xs) = mylast def xs
 
 ------------------------------------------------------------------------------
 -- Ex 4: safe list indexing. Define a function indexDefault so that
