@@ -120,7 +120,7 @@ sorted [_]      = True
 sorted (x:y:rest)
   | x <= y      = sorted (y:rest)
   | otherwise   = False
-  
+
 ------------------------------------------------------------------------------
 -- Ex 6: compute the partial sums of the given list like this:
 --
@@ -131,7 +131,12 @@ sorted (x:y:rest)
 -- Use pattern matching and recursion (and the list constructors : and [])
 
 sumsOf :: [Int] -> [Int]
-sumsOf xs = todo
+sumsOf xs = sumsOf' 0 xs
+
+sumsOf' :: Int -> [Int] -> [Int]
+sumsOf' t []     = []
+sumsOf' t (x:xs) = a : sumsOf' a xs where a = t+x
+
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement the function merge that merges two sorted lists of
