@@ -39,8 +39,9 @@ import Mooc.Todo
 --   buildList 7 0 3 ==> [3]
 
 buildList :: Int -> Int -> Int -> [Int]
-buildList start count end = todo
-
+buildList start count end =
+    if count <= 0 then [end]
+                  else start : buildList start (count - 1) end
 ------------------------------------------------------------------------------
 -- Ex 2: given i, build the list of sums [1, 1+2, 1+2+3, .., 1+2+..+i]
 --
@@ -48,8 +49,19 @@ buildList start count end = todo
 --
 -- Ps. you'll probably need a recursive helper function
 
-sums :: Int -> [Int]
-sums i = todo
+sums :: Int -> [Int] 
+sums 0 = []                          -- i가 0이면 빈 리스트 반환
+sums i = sums' 0 i                   -- 그렇지 않은 경우 sums'함수를 호출
+
+sums' :: Int -> Int -> [Int]
+sums' x a
+    | x == a    = []                 -- x와 a가 같으면 빈 리스트 반환
+    | otherwise = p b : sums' b a    -- 그렇지 않은 경우 p b 를 현재 리스트에 추가하고 다음 항목 계산을 위해 sums' 함수 재귀호출
+    where b = x + 1
+
+p :: Int -> Int
+p 1 = 1                              -- p 1은 1을 반환
+p n = n + p (n - 1)                  -- p n은 n과 p (n-1)의 합을 반환
 
 ------------------------------------------------------------------------------
 -- Ex 3: define a function mylast that returns the last value of the
@@ -73,9 +85,6 @@ mylast def xs = todo
 --
 -- Use only pattern matching and recursion (and the list constructors : and [])
 --
--- This time, implement indexDefault using pattern matching and
--- recursion.
---
 -- Examples:
 --   indexDefault [True] 1 False         ==>  False
 --   indexDefault [10,20,30] 0 7         ==>  10
@@ -91,6 +100,13 @@ indexDefault xs i def = todo
 -- increasing order.
 --
 -- Use pattern matching and recursion to iterate through the list.
+--
+-- Examples:
+--   sorted [1,2,3] ==> True
+--   sorted []      ==> True
+--   sorted [2,7,7] ==> True
+--   sorted [1,3,2] ==> False
+--   sorted [7,2,7] ==> False
 
 sorted :: [Int] -> Bool
 sorted xs = todo
@@ -121,20 +137,25 @@ merge :: [Int] -> [Int] -> [Int]
 merge xs ys = todo
 
 ------------------------------------------------------------------------------
--- Ex 8: define the function mymaximum that takes a list and a
--- function bigger :: a -> a -> Bool and returns the
--- biggest of the list, according to the comparing function.
+-- Ex 8: compute the biggest element, using a comparison function
+-- passed as an argument.
 --
--- An initial biggest value is provided to give you something to
--- return for empty lists.
+-- That is, implement the function mymaximum that takes
+--
+-- * a function `bigger` :: a -> a -> Bool
+-- * a value `initial` of type a
+-- * a list `xs` of values of type a
+--
+-- and returns the biggest value it sees, considering both `initial`
+-- and all element in `xs`.
 --
 -- Examples:
 --   mymaximum (>) 3 [] ==> 3
 --   mymaximum (>) 0 [1,3,2] ==> 3
 --   mymaximum (>) 4 [1,3,2] ==> 4    -- initial value was biggest
 --   mymaximum (<) 4 [1,3,2] ==> 1    -- note changed biggerThan
---   mymaximum (\xs ys -> length xs > length ys) [] [[1,2],[3]]
---     ==> [1,2]
+--   mymaximum (\(a,b) (c,d) -> b > d) ("",0) [("Banana",7),("Mouse",8)]
+--     ==> ("Mouse",8)
 
 mymaximum :: (a -> a -> Bool) -> a -> [a] -> a
 mymaximum bigger initial xs = todo
