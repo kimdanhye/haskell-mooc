@@ -149,8 +149,12 @@ sumsOf' t (x:xs) = a : sumsOf' a xs where a = t+x
 --   merge [1,1,6] [1,2]   ==> [1,1,1,2,6]
 
 merge :: [Int] -> [Int] -> [Int]
-merge xs ys = todo
-
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys)
+  | x <= y    = x : merge xs (y:ys)
+  | otherwise = y : merge (x:xs) ys
+  
 ------------------------------------------------------------------------------
 -- Ex 8: compute the biggest element, using a comparison function
 -- passed as an argument.
