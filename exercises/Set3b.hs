@@ -154,7 +154,7 @@ merge xs [] = xs
 merge (x:xs) (y:ys)
   | x <= y    = x : merge xs (y:ys)
   | otherwise = y : merge (x:xs) ys
-  
+
 ------------------------------------------------------------------------------
 -- Ex 8: compute the biggest element, using a comparison function
 -- passed as an argument.
@@ -177,7 +177,10 @@ merge (x:xs) (y:ys)
 --     ==> ("Mouse",8)
 
 mymaximum :: (a -> a -> Bool) -> a -> [a] -> a
-mymaximum bigger initial xs = todo
+mymaximum _ initial [] = initial
+mymaximum bigger initial (x:xs)
+  | bigger x initial = mymaximum bigger x xs
+  | otherwise = mymaximum bigger initial xs
 
 ------------------------------------------------------------------------------
 -- Ex 9: define a version of map that takes a two-argument function
